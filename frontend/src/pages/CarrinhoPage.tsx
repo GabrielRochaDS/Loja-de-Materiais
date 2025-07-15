@@ -19,7 +19,9 @@ const CarrinhoPage = () => {
   }, [carrinho]);
 
   const atualizarQuantidade = (idProduto: number, novaQtd: number) => {
-    if (novaQtd < 1) return;
+    if (novaQtd < 1) {
+      removerItem(idProduto);
+    };
     setCarrinho((carrinhoAtual) =>
       carrinhoAtual.map((item) =>
         item.idProduto === idProduto
@@ -78,9 +80,9 @@ const CarrinhoPage = () => {
           </thead>
           <tbody>
             {carrinhoDetalhado.map((item) => (
-              <tr key={item.id}>
-                <td>{item.nome}</td>
-                <td>R$ {item.preco.toFixed(2)}</td>
+              <tr key={item!.id}>
+                <td>{item!.nome}</td>
+                <td>R$ {item!.preco.toFixed(2)}</td>
                 <td className="d-flex align-items-center gap-2">
                   <button
                     className="btn btn-sm btn-secondary"
@@ -94,7 +96,7 @@ const CarrinhoPage = () => {
                     type="number"
                     className="form-control"
                     style={{ width: "70px" }}
-                    value={item.quantidade}
+                    value={item!.quantidade}
                     onChange={(e) =>
                       atualizarQuantidade(
                         item.id,
@@ -114,7 +116,7 @@ const CarrinhoPage = () => {
                     +
                   </button>
                 </td>
-                <td>R$ {item.subtotal.toFixed(2)}</td>
+                <td>R$ {item!.subtotal.toFixed(2)}</td>
                 <td>
                   <button
                     className="btn btn-sm btn-danger"
@@ -134,7 +136,7 @@ const CarrinhoPage = () => {
               <td colSpan={2} className="fw-bold">
                 R${" "}
                 {carrinhoDetalhado
-                  .reduce((total, item) => total + item.subtotal, 0)
+                  .reduce((total, item) => total + item!.subtotal, 0)
                   .toFixed(2)}
               </td>
             </tr>
