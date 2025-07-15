@@ -30,8 +30,6 @@ const CardsPorSlugCategoriaPage = () => {
     setCarrinho((prevCarrinho: ProdCarrinho[]) => {
       const existe = prevCarrinho.find((item) => item.idProduto === produto.id);
       if (existe) {
-        // existe.quantidade = existe.quantidade + 1;  Isso não funciona
-        // return prevCarrinho;
         const novoCarrinho: ProdCarrinho[] = prevCarrinho.map(
           (item: ProdCarrinho) =>
             item.idProduto === produto.id
@@ -49,8 +47,6 @@ const CardsPorSlugCategoriaPage = () => {
     setCarrinho((prevCarrinho: ProdCarrinho[]) => {
       const existe = prevCarrinho.find((item) => item.idProduto === produto.id);
       if (existe) {
-        // existe.quantidade = existe.quantidade + 1;  Isso não funciona
-        // return prevCarrinho;
         const novoCarrinho: ProdCarrinho[] = prevCarrinho.map(
           (item: ProdCarrinho) =>
             item.idProduto === produto.id
@@ -94,8 +90,11 @@ const CardsPorSlugCategoriaPage = () => {
 
   return (
     <InfiniteScroll
-      style={{overflowX: "hidden"}}
-      dataLength={data.pages.reduce((total, page) => total + page.totalDeItens, 0)}
+      style={{ overflowX: "hidden" }}
+      dataLength={data.pages.reduce(
+        (total, page) => total + page.totalDeItens,
+        0
+      )}
       hasMore={hasNextPage}
       next={() => fetchNextPage()}
       loader={<h6>Carregando...</h6>}

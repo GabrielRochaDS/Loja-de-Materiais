@@ -1,7 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom";
 
 const HomePage = () => {
-  
+
   return (
     <div className="row">
       <div className="col-lg-2">
@@ -10,14 +10,23 @@ const HomePage = () => {
           <NavLink className="nav-link" aria-current="page" to="/">
             Todos
           </NavLink>
-          <NavLink className="nav-link" to="/frutas">
-            Frutas
+          <NavLink className="nav-link" to="/Cimento">
+            Cimento
           </NavLink>
-          <NavLink className="nav-link" to="/legumes">
-            Legumes
+          <NavLink className="nav-link" to="/Madeira">
+            Madeira
           </NavLink>
-          <NavLink className="nav-link" to="/verduras">
-            Verduras
+          <NavLink className="nav-link" to="/Ferramentas">
+            Ferramentas
+          </NavLink>
+          <NavLink className="nav-link" to="/Tintas">
+            Tintas
+          </NavLink>
+          <NavLink className="nav-link" to="/Telhas">
+            Telhas
+          </NavLink>
+          <NavLink className="nav-link" to="/Pisos">
+            Pisos
           </NavLink>
         </nav>
       </div>
