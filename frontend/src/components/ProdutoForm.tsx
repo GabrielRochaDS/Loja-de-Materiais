@@ -216,9 +216,12 @@ const ProdutoForm = () => {
                 className={errors.categoria ? "form-control form-control-sm is-invalid" : "form-control form-control-sm"}
               >
                 <option value="0">Selecione uma categoria</option>
-                <option value="1">Fruta</option>
-                <option value="2">Legume</option>
-                <option value="3">Verdura</option>
+                <option value="1">Cimento</option>
+                <option value="2">Madeira</option>
+                <option value="3">Ferramentas</option>
+                <option value="4">Tintas</option>
+                <option value="5">Telhas</option>
+                <option value="6">Pisos</option>
               </select>
               <div className="invalid-feedback">
                 {errors.categoria?.message}

@@ -15,7 +15,8 @@ const Card = ({ produto, adicionarProduto, subtrairProduto, produtoNoCarrinho }:
       <div className="card-body">
         <h5 className="card-title">{produto.nome}</h5>
         <p className="card-text">{produto.descricao}</p>
-        <p className="card-text fw-bold" style={{color: "rgb(220,60,60)"}}>
+        <p className="card-text fw-bold" style={{ color: "rgb(220,60,60)" }}>
+          <p className="text-muted" style={{ fontSize: "0.8rem" }}>{produto.id}</p>
           R${" "}
           {produto.preco.toLocaleString("pt-BR", {
             minimumFractionDigits: 2,
@@ -25,14 +26,14 @@ const Card = ({ produto, adicionarProduto, subtrairProduto, produtoNoCarrinho }:
         </p>
       </div>
       <div className="card-footer p-0 mb-4">
-        <div style={produtoNoCarrinho ? {display: "block"} : {display: "none"}} >
+        <div style={produtoNoCarrinho ? { display: "block" } : { display: "none" }} >
           <div className="btn-group w-100">
             <button onClick={() => subtrairProduto(produto)} type="button" className="btn btn-secondary btn-sm">-</button>
             <button type="button" className="btn btn-secondary btn-sm">{produtoNoCarrinho?.quantidade}</button>
             <button onClick={() => adicionarProduto(produto)} type="button" className="btn btn-secondary btn-sm">+</button>
           </div>
         </div>
-        <button style={produtoNoCarrinho ? {display: "none"} : {display: "block"}} onClick={() => adicionarProduto(produto)} type="button" className="btn btn-success btn-sm w-100">Comprar</button>
+        <button style={produtoNoCarrinho ? { display: "none" } : { display: "block" }} onClick={() => adicionarProduto(produto)} type="button" className="btn btn-success btn-sm w-100">Comprar</button>
       </div>
     </div>
   );

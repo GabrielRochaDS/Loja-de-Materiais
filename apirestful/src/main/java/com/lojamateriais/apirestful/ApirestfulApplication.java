@@ -34,7 +34,7 @@ public class ApirestfulApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// Usuário administrador
-		Usuario usuario = new Usuario("admin", "construcao123");
+		Usuario usuario = new Usuario("admin", "admin");
 		usuarioRepository.save(usuario);
 
 		// Categorias
