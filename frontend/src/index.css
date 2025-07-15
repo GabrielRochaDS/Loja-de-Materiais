@@ -1,0 +1,42 @@
+body {
+    overflow-y: scroll;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+/* Procura por um <nav> com a classe nav e depois aplica a regra para qq elemento 
+com a classe nav-link que seja filho, neto, qq descendente desse <nav> 
+
+Poderia ter colocado nav.cat .nav-link.active: só afetaria os elementos com a classe
+nav-link e active dentro de um elemento nav com a classe cat (de categoria) - para 
+ter certeza que isso só seria aplicado à lista de categorias. */
+
+nav.nav .nav-link.active {
+  background-color: green;
+}
+
+nav.nav .nav-link {
+  color: black;
+}
+
+nav.nav .nav-link:hover {
+  color: green;
+}
+
+nav.nav .nav-link.active:hover {
+  color: white;
+}
+
+/* Vai aplicar as regras acima ao elemento abaixo em HomePage.tsx
+    <nav className="col-lg-2 nav nav-pills d-flex flex-column">
+      <h5>Categorias</h5>
+      <NavLink className="nav-link" to="/">
+        Todos
+      </NavLink>
+      ... */
+button.btn.btn-secondary:hover {
+  background-color: #6c757d;
+  border-color: #6c757d;
+} 

@@ -1,0 +1,45 @@
+Tabela de Produtos - Campos e Estrutura
+
+A tabela HTML de exibição dos produtos contém os seguintes campos:
+
+Id: Identificador único de cada produto.
+Imagem: Caminho ou nome do arquivo da imagem representativa do produto.
+Categoria: Categoria à qual o produto pertence (ex: Cimento, Ferramentas).
+Nome: Nome comercial do produto.
+Disponível: Indica se o produto está disponível para compra (`true` ou `false`).
+Data de Cadastro: Data em que o produto foi cadastrado no sistema.
+Preço: Valor unitário do produto.
+Ação: Botões ou links com funcionalidades como editar, excluir, ou detalhar o item.
+
+Categorias Cadastradas
+
+As categorias cadastradas no sistema são:
+
+| ID | Nome        | Slug        |
+| -- | ----------- | ----------- |
+| 1  | Cimento     | cimento     |
+| 2  | Madeira     | madeira     |
+| 3  | Ferramentas | ferramentas |
+| 4  | Tintas      | tintas      |
+| 5  | Telhas      | telhas      |
+| 6  | Pisos       | pisos       |
+
+
+Produtos Disponíveis
+
+Os produtos cadastrados com suas respectivas informações são:
+
+| Id | Imagem                 | Categoria   | Nome                       | Disponível | Data de Cadastro | Preço (R\$) |
+| -- | ---------------------- | ----------- | -------------------------- | ---------- | ---------------- | ----------- |
+| 1  | cimento\_cp2.png       | Cimento     | Cimento CP-II              | Sim        | Hoje             | 42,90       |
+| 2  | cimento\_cp4.png       | Cimento     | Cimento CP-IV              | Sim        | Hoje             | 49,90       |
+| 3  | madeira\_pinho.png     | Madeira     | Madeira Pinho 2x4          | Sim        | Hoje             | 34,50       |
+| 4  | compensado.png         | Madeira     | Compensado Naval           | Sim        | Hoje             | 89,00       |
+| 5  | martelo.png            | Ferramentas | Martelo de Unha 27mm       | Sim        | Hoje             | 19,90       |
+| 6  | furadeira.png          | Ferramentas | Furadeira Impacto 650W     | Sim        | Hoje             | 189,90      |
+| 7  | tinta\_pva\_branca.png | Tintas      | Tinta PVA Branca 18L       | Sim        | Hoje             | 110,00      |
+| 8  | tinta\_esmalte.png     | Tintas      | Tinta Esmalte Sintético    | Sim        | Hoje             | 65,90       |
+| 9  | telha\_ondulada.png    | Telhas      | Telha Ondulada 2,44m       | Sim        | Hoje             | 39,90       |
+| 10 | telha\_colonial.png    | Telhas      | Telha Colonial Cerâmica    | Sim        | Hoje             | 2,99        |
+| 11 | piso\_porcelanato.png  | Pisos       | Piso Porcelanato Acetinado | Sim        | Hoje             | 42,90       |
+| 12 | piso\_ceramico.png     | Pisos       | Piso Cerâmico Branco       | Sim        | Hoje             | 28,50       |
