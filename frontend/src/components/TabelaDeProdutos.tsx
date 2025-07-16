@@ -22,7 +22,7 @@ const TabelaDeProdutos = () => {
     tamanho: tamanho.toString(),
     nome: nome,
   });
-  
+
   const { mutate: removerProduto, error: errorRemocaoProduto } =
     useRemoverProdutoPorId();
 
@@ -106,7 +106,7 @@ const TabelaDeProdutos = () => {
         <tfoot>
           <tr>
             <td className="text-center align-middle fw-bold" colSpan={5}>
-              Total...
+              Total
             </td>
             <td className="text-center align-middle fw-bold" colSpan={2}>
               R${" "}
