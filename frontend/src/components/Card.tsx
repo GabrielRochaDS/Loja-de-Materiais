@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Produto from "../interfaces/Produto";
 import { ProdCarrinho } from "../pages/CardsPorSlugCategoriaPage";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import useUsuarioStore from "../store/UsuarioStore";
 
 interface Props {
   produto: Produto;
@@ -12,6 +13,7 @@ interface Props {
 
 const Card = ({ produto, adicionarProduto, subtrairProduto, produtoNoCarrinho }: Props) => {
   const [favoritado, setFavoritado] = useState(false);
+  const usuarioLogado = useUsuarioStore((s) => s.usuarioLogado);
 
   useEffect(() => {
     const favoritos = JSON.parse(localStorage.getItem("favoritos") || "[]");
@@ -34,19 +36,21 @@ const Card = ({ produto, adicionarProduto, subtrairProduto, produtoNoCarrinho }:
 
   return (
     <div className="card h-100 border-0 position-relative d-flex flex-column">
-      {/* Ícone de Favorito */}
-      <button
-        onClick={toggleFavorito}
-        className="btn position-absolute top-0 end-0 m-2 p-1"
-        style={{
-          backgroundColor: "rgba(255,255,255,0.85)",
-          border: "1px solid #ccc"
-        }}
-      >
-        <i
-          className={`bi ${favoritado ? "bi-star-fill text-warning" : "bi-star text-secondary"} fs-5`}
-        ></i>
-      </button>
+      {/* Ícone de Favorito (só aparece se estiver logado) */}
+      {usuarioLogado > 0 && (
+        <button
+          onClick={toggleFavorito}
+          className="btn position-absolute top-0 end-0 m-2 p-1"
+          style={{
+            backgroundColor: "rgba(255,255,255,0.85)",
+            border: "1px solid #ccc",
+          }}
+        >
+          <i
+            className={`bi ${favoritado ? "bi-star-fill text-warning" : "bi-star text-secondary"} fs-5`}
+          ></i>
+        </button>
+      )}
 
       {/* Imagem */}
       <img src={produto.imagem} className="card-img-top" alt={produto.nome} />

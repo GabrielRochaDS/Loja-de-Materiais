@@ -10,6 +10,7 @@ import ProdutosComPaginacaoPage from "../pages/ProdutosComPaginacaoPage";
 import Layout from "./Layout";
 import PrivateRoutes from "./PrivateRoutes";
 import CadastrarProdutoPage from "../pages/CadastrarProdutoPage";
+import CadastrarUsuarioPage from "../pages/CadastrarUsuarioPage";
 
 const router = createBrowserRouter([
     {
@@ -18,16 +19,18 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
             {
-                path: "", 
+                path: "",
                 element: <HomePage />,
                 children: [
-                    {path: ":slugCategoria?", element: <CardsPorSlugCategoriaPage />}
-                ]},
-            {path: "produtos", element: <ProdutosComPaginacaoPage />},
-            {path: "carrinho", element: <CarrinhoPage />},
-            {path: "cadastrar-produto", element: <CadastrarProdutoPage />},
-            {path: "produtos/:id", element: <ProdutoPage />},
-            {path: "login", element: <LoginPage />},
+                    { path: ":slugCategoria?", element: <CardsPorSlugCategoriaPage /> }
+                ]
+            },
+            { path: "produtos", element: <ProdutosComPaginacaoPage /> },
+            { path: "carrinho", element: <CarrinhoPage /> },
+            { path: "cadastrar-produto", element: <CadastrarProdutoPage /> },
+            { path: "produtos/:id", element: <ProdutoPage /> },
+            { path: "login", element: <LoginPage /> },
+            { path: "cadastrar-usuario", element: <CadastrarUsuarioPage /> },
         ]
     },
     {
@@ -35,7 +38,7 @@ const router = createBrowserRouter([
         element: <PrivateRoutes />,
         errorElement: <ErrorPage />,
         children: [
-            {path: "favoritos", element: <FavoritosPage />},
+            { path: "favoritos", element: <FavoritosPage /> },
         ]
     }
 ])

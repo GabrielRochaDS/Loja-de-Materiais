@@ -28,7 +28,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 // }
 
 const regexData = /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/;
-const regexImagem = /^[a-z]+\.(gif|jpg|png|bmp)$/;
+const regexImagem = /^[a-z_]+\.(gif|jpg|png|bmp)$/;
 const schema = z.object({
   nome: z
     .string()
@@ -95,7 +95,7 @@ const ProdutoForm = () => {
   const { mutate: alterarProduto, error: errorAlterarProduto } =
     useAlterarProduto();
 
-  const { register, handleSubmit, setValue, reset, formState: {errors} } = 
+  const { register, handleSubmit, setValue, reset, formState: { errors } } =
     useForm<ProdutoForm>({
       defaultValues: {
         nome: "",
@@ -104,7 +104,7 @@ const ProdutoForm = () => {
         data_cadastro: "",
         preco: undefined,
         qtd_estoque: undefined,
-        imagem: "", 
+        imagem: "",
         disponivel: false
       },
       resolver: zodResolver(schema)
@@ -130,10 +130,10 @@ const ProdutoForm = () => {
       categoria: { id: categoria } as Categoria,
       dataCadastro: data_cadastro ? new Date(
         data_cadastro.substring(6, 10) +
-          "-" +
-          data_cadastro.substring(3, 5) +
-          "-" +
-          data_cadastro.substring(0, 2)
+        "-" +
+        data_cadastro.substring(3, 5) +
+        "-" +
+        data_cadastro.substring(0, 2)
       ) : null,
       preco: preco,
       qtdEstoque: qtd_estoque,
@@ -211,7 +211,7 @@ const ProdutoForm = () => {
             </label>
             <div className="col-xl-10">
               <select
-                {...register("categoria", {valueAsNumber: true})}
+                {...register("categoria", { valueAsNumber: true })}
                 id="categoria"
                 className={errors.categoria ? "form-control form-control-sm is-invalid" : "form-control form-control-sm"}
               >

@@ -16,15 +16,15 @@ interface ProdutoStore {
 
 const useProdutoStore = create<ProdutoStore>((set) => ({
     pagina: 0,
-    tamanho: 18,
+    tamanho: 13,
     nome: "",
     mensagem: "",
     produtoSelecionado: {} as Produto,
 
-    setPagina: (novaPagina: number) => set(() => ({pagina: novaPagina})),
-    setNome: (novoNome: string) => set(() => ({nome: novoNome})),
-    setMensagem: (novaMensagem: string) => set(() => ({mensagem: novaMensagem})),
-    setProdutoSelecionado: (novoProdutoSelecionado: Produto) => set(() => ({produtoSelecionado: novoProdutoSelecionado}))
+    setPagina: (novaPagina: number) => set(() => ({ pagina: novaPagina })),
+    setNome: (novoNome: string) => set(() => ({ nome: novoNome })),
+    setMensagem: (novaMensagem: string) => set(() => ({ mensagem: novaMensagem })),
+    setProdutoSelecionado: (novoProdutoSelecionado: Produto) => set(() => ({ produtoSelecionado: novoProdutoSelecionado }))
 }))
 export default useProdutoStore;
 

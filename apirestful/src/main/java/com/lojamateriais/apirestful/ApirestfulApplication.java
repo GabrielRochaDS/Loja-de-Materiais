@@ -34,7 +34,7 @@ public class ApirestfulApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// Usuário administrador
-		Usuario usuario = new Usuario("admin", "admin");
+		Usuario usuario = new Usuario("admin@admin", "admin");
 		usuarioRepository.save(usuario);
 
 		// Categorias
@@ -69,6 +69,71 @@ public class ApirestfulApplication implements CommandLineRunner {
 		);
 
 		produtoRepository.saveAll(produtos);
+
+		List<Produto> produtosDuplicados = produtos.stream()
+				.map(produto -> new Produto(
+						produto.getImagem(),
+						produto.getNome(),
+						produto.getSlug(),
+						produto.getDescricao(),
+						produto.isDisponivel(),
+						produto.getQtdEstoque(),
+						produto.getPreco(),
+						produto.getDataCadastro(),
+						produto.getCategoria()
+				))
+				.toList();
+
+		produtoRepository.saveAll(produtosDuplicados);
+
+		List<Produto> produtosDuplicados1 = produtos.stream()
+				.map(produto -> new Produto(
+						produto.getImagem(),
+						produto.getNome(),
+						produto.getSlug(),
+						produto.getDescricao(),
+						produto.isDisponivel(),
+						produto.getQtdEstoque(),
+						produto.getPreco(),
+						produto.getDataCadastro(),
+						produto.getCategoria()
+				))
+				.toList();
+
+		produtoRepository.saveAll(produtosDuplicados1);
+
+		List<Produto> produtosDuplicados2 = produtos.stream()
+				.map(produto -> new Produto(
+						produto.getImagem(),
+						produto.getNome(),
+						produto.getSlug(),
+						produto.getDescricao(),
+						produto.isDisponivel(),
+						produto.getQtdEstoque(),
+						produto.getPreco(),
+						produto.getDataCadastro(),
+						produto.getCategoria()
+				))
+				.toList();
+
+		produtoRepository.saveAll(produtosDuplicados2);
+
+		List<Produto> produtosDuplicados3 = produtos.stream()
+				.map(produto -> new Produto(
+						produto.getImagem(),
+						produto.getNome(),
+						produto.getSlug(),
+						produto.getDescricao(),
+						produto.isDisponivel(),
+						produto.getQtdEstoque(),
+						produto.getPreco(),
+						produto.getDataCadastro(),
+						produto.getCategoria()
+				))
+				.toList();
+
+		produtoRepository.saveAll(produtosDuplicados3);
+
 	}
 }
 

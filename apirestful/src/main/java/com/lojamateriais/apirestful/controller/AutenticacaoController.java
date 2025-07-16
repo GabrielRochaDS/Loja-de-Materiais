@@ -14,6 +14,11 @@ public class AutenticacaoController {
     @Autowired
     private AutenticacaoService autenticacaoService;
 
+    @PutMapping
+    public Usuario cadastrarUsuario(@RequestBody Usuario usuario) {
+        return autenticacaoService.cadastrarUsuario(usuario);
+    }
+
     @PostMapping("login")  // http://localhost:8080/autenticacao/login
     public TokenResponse login(@RequestBody Usuario usuario) {
         Usuario usuarioLogado = autenticacaoService.login(usuario);
