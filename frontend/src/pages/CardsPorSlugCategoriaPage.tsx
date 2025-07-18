@@ -20,8 +20,6 @@ const CardsPorSlugCategoriaPage = () => {
     return itensDeCarrinho ? JSON.parse(itensDeCarrinho) : [];
   });
 
-  console.log("carrinho = ", carrinho);
-
   useEffect(() => {
     localStorage.setItem("carrinho", JSON.stringify(carrinho));
   }, [carrinho]);
@@ -86,8 +84,6 @@ const CardsPorSlugCategoriaPage = () => {
     });
   });
 
-  console.log("produtos no carrinho = ", produtosNoCarrinho);
-
   return (
     <InfiniteScroll
       style={{ overflowX: "hidden" }}
@@ -96,10 +92,25 @@ const CardsPorSlugCategoriaPage = () => {
         0
       )}
       hasMore={hasNextPage}
-      next={() => fetchNextPage()}
-      loader={<h6>Carregando...</h6>}
+      next={fetchNextPage}
+      loader={
+        <div className="d-flex justify-content-center my-4">
+          <div className="text-center">
+            <div
+              className="spinner-border text-success mb-2"
+              role="status"
+              style={{ width: "2rem", height: "2rem" }}
+            >
+              <span className="visually-hidden">Carregando...</span>
+            </div>
+            <div className="fw-medium text-muted">
+              Carregando mais produtos...
+            </div>
+          </div>
+        </div>
+      }
     >
-      <h5>
+      <h5 className="mt-3">
         {slugCategoria
           ? slugCategoria.charAt(0).toUpperCase() + slugCategoria.slice(1)
           : "Produtos"}
@@ -118,17 +129,8 @@ const CardsPorSlugCategoriaPage = () => {
           ))
         )}
       </div>
-      {/* {hasNextPage && (
-        <div className="d-flex justify-content-center">
-          <button
-            onClick={() => fetchNextPage()}
-            className="btn btn btn-outline-success mb-5 w-50"
-          >
-            {isFetchingNextPage ? "Recuperando..." : "Recuperar mais..."}
-          </button>
-        </div>
-      )} */}
     </InfiniteScroll>
   );
 };
+
 export default CardsPorSlugCategoriaPage;

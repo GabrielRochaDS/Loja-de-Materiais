@@ -19,7 +19,7 @@ const NavBar = () => {
             style={{ width: "50px", marginRight: "10px" }}
             className="img-fluid"
           />
-          <span className="fw-bold text-white">Materiais BR</span>
+          <span className="fw-bold text-white">Loja de Materiais</span>
         </NavLink>
 
         {/* Mobile Toggle */}
