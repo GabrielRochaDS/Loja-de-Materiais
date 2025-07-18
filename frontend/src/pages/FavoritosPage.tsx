@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useRecuperarProdutos from "../hooks/useRecuperarProdutos";
 import Produto from "../interfaces/Produto";
 import { ProdCarrinho } from "./CardsPorSlugCategoriaPage";
+import useUsuarioStore from "../store/UsuarioStore";
 
 const FavoritosPage = () => {
   const [favoritosIds, setFavoritosIds] = useState<number[]>([]);
@@ -10,12 +11,16 @@ const FavoritosPage = () => {
     return itensDeCarrinho ? JSON.parse(itensDeCarrinho) : [];
   });
 
+  const usuarioLogado = useUsuarioStore((s) => s.usuarioLogado);
   const { data: produtos } = useRecuperarProdutos();
 
   useEffect(() => {
-    const favoritosStorage = JSON.parse(localStorage.getItem("favoritos") || "[]");
-    setFavoritosIds(favoritosStorage);
-  }, []);
+    if (!usuarioLogado) return;
+
+    const favoritosPorUsuario: Record<number, number[]> = JSON.parse(localStorage.getItem("favoritos") || "{}");
+    const favoritosDoUsuario = favoritosPorUsuario[usuarioLogado] || [];
+    setFavoritosIds(favoritosDoUsuario);
+  }, [usuarioLogado]);
 
   useEffect(() => {
     localStorage.setItem("carrinho", JSON.stringify(carrinho));
@@ -52,9 +57,13 @@ const FavoritosPage = () => {
     });
   };
 
-  const removerFavorito = (id: number) => {
-    const atualizados = favoritosIds.filter((favId) => favId !== id);
-    localStorage.setItem("favoritos", JSON.stringify(atualizados));
+  const removerFavorito = (idProduto: number) => {
+    const favoritosPorUsuario: Record<number, number[]> = JSON.parse(localStorage.getItem("favoritos") || "{}");
+    const favoritosDoUsuario = favoritosPorUsuario[usuarioLogado] || [];
+
+    const atualizados = favoritosDoUsuario.filter((id) => id !== idProduto);
+    favoritosPorUsuario[usuarioLogado] = atualizados;
+    localStorage.setItem("favoritos", JSON.stringify(favoritosPorUsuario));
     setFavoritosIds(atualizados);
   };
 
@@ -77,14 +86,11 @@ const FavoritosPage = () => {
             return (
               <div key={produto.id} className="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
                 <div className="card h-100 border-0 d-flex flex-column">
-                  {/* Imagem */}
                   <img
                     src={produto.imagem}
                     className="card-img-top"
                     alt={produto.nome}
                   />
-
-                  {/* Conteúdo */}
                   <div className="card-body d-flex flex-column">
                     <h5 className="card-title">{produto.nome}</h5>
                     <p className="card-text flex-grow-1">{produto.descricao}</p>
@@ -101,7 +107,6 @@ const FavoritosPage = () => {
                     </p>
                   </div>
 
-                  {/* Rodapé */}
                   <div className="card-footer mt-auto p-0 mb-3">
                     {produtoNoCarrinho ? (
                       <div className="btn-group w-100">
@@ -130,7 +135,6 @@ const FavoritosPage = () => {
                       </button>
                     )}
 
-                    {/* Botão Remover Favorito */}
                     <button
                       onClick={() => removerFavorito(produto.id)}
                       className="btn btn-outline-danger btn-sm w-100 mt-1"

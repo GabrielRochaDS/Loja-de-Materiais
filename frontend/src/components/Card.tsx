@@ -16,21 +16,29 @@ const Card = ({ produto, adicionarProduto, subtrairProduto, produtoNoCarrinho }:
   const usuarioLogado = useUsuarioStore((s) => s.usuarioLogado);
 
   useEffect(() => {
-    const favoritos = JSON.parse(localStorage.getItem("favoritos") || "[]");
-    setFavoritado(favoritos.includes(produto.id));
-  }, [produto.id]);
+    if (!usuarioLogado) return;
+
+    const favoritosPorUsuario: Record<number, number[]> = JSON.parse(localStorage.getItem("favoritos") || "{}");
+    const favoritosDoUsuario = favoritosPorUsuario[usuarioLogado] || [];
+
+    setFavoritado(favoritosDoUsuario.includes(produto.id));
+  }, [produto.id, usuarioLogado]);
 
   const toggleFavorito = () => {
-    const favoritos: number[] = JSON.parse(localStorage.getItem("favoritos") || "[]");
-    let novosFavoritos;
+    if (!usuarioLogado) return;
 
+    const favoritosPorUsuario: Record<number, number[]> = JSON.parse(localStorage.getItem("favoritos") || "{}");
+    const favoritosDoUsuario = favoritosPorUsuario[usuarioLogado] || [];
+
+    let novosFavoritosDoUsuario: number[];
     if (favoritado) {
-      novosFavoritos = favoritos.filter((id) => id !== produto.id);
+      novosFavoritosDoUsuario = favoritosDoUsuario.filter((id) => id !== produto.id);
     } else {
-      novosFavoritos = [...favoritos, produto.id];
+      novosFavoritosDoUsuario = [...favoritosDoUsuario, produto.id];
     }
 
-    localStorage.setItem("favoritos", JSON.stringify(novosFavoritos));
+    favoritosPorUsuario[usuarioLogado] = novosFavoritosDoUsuario;
+    localStorage.setItem("favoritos", JSON.stringify(favoritosPorUsuario));
     setFavoritado(!favoritado);
   };
 
