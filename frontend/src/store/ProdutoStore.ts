@@ -27,7 +27,3 @@ const useProdutoStore = create<ProdutoStore>((set) => ({
     setProdutoSelecionado: (novoProdutoSelecionado: Produto) => set(() => ({ produtoSelecionado: novoProdutoSelecionado }))
 }))
 export default useProdutoStore;
-
-// const produtoStore = useProdutoStore();
-
-// const setPagina = useProdutoStore((s) => s.setPagina);

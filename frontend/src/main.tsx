@@ -17,9 +17,7 @@ const queryClient = new QueryClient({
 export default queryClient;
 
 createRoot(document.getElementById("root")!).render(
-  // <StrictMode>
   <QueryClientProvider client={queryClient}>
     <RouterProvider router={router} />
   </QueryClientProvider>
-  // </StrictMode>,
 );

@@ -3,7 +3,6 @@ import Produto from "../interfaces/Produto";
 import isErrorResponse from "../util/isErrorResponse";
 
 const useRecuperarProdutoPorId = (id: number, removido: boolean) => {
-  
   const recuperarProdutoPorId = async (id: number): Promise<Produto> => {
     const response = await fetch("http://localhost:8080/produtos/" + id);
     if (!response.ok) {
@@ -26,7 +25,7 @@ const useRecuperarProdutoPorId = (id: number, removido: boolean) => {
     queryKey: ["produto", id],
     queryFn: () => recuperarProdutoPorId(id),
     staleTime: 10_000,
-    enabled: !removido
+    enabled: !removido,
   });
 };
 export default useRecuperarProdutoPorId;
